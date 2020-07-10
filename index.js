@@ -1,13 +1,15 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const Boom  = require('@hapi/boom');
+const debug = require('debug')('app:server');
 const productsRouter = require('./routes/views/products');
 const productsApiRouter = require('./routes/api/products');
 const authApiRouter = require('./routes/api/auth');
 
 const { logErrors, wrapErrors, clientErrorHandler, errorHandler } = require('./utils/middlewares/errorsHandlers');
 const  isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
-const Boom  = require('@hapi/boom');
+
 
 //app
 const app = express();
@@ -25,7 +27,7 @@ app.set("view engine", "pug");
 
 //Routes
 app.use('/products', productsRouter);
-app.use('/api/products', productsApiRouter);
+productsApiRouter(app);
 app.use('/api/auth', authApiRouter);
 
 //redirect
@@ -54,5 +56,5 @@ app.use(errorHandler);
 
 //server
 const server = app.listen(8000, function(){
-    console.log(`Listening http://localhost:${server.address().port}`);
+    debug(`Listening http://localhost:${server.address().port}`);
 });

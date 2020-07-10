@@ -1,5 +1,7 @@
 const Sentry = require("@sentry/node");
 const Boom = require('@hapi/boom');
+const debug = require('debug')('app:error');
+
 const { config } = require('../../config/index');
 const isRequestAjaxOrApi = require('../../utils/isRequestAjaxOrApi');
 
@@ -13,7 +15,7 @@ function withErrorStack(err, stack){
 }
 
 function logErrors(err, req, res, next){
-    console.log(err.stack);
+    debug(err.stack);
     Sentry.captureException(err);
     //console.log('Error logErrors');
     next(err);
