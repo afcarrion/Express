@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const Boom  = require('@hapi/boom');
 const debug = require('debug')('app:server');
+const helmet = require('helmet');
 const productsRouter = require('./routes/views/products');
 const productsApiRouter = require('./routes/api/products');
 const authApiRouter = require('./routes/api/auth');
@@ -13,6 +14,9 @@ const  isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
 
 //app
 const app = express();
+
+//Helmet - cabeceras de seguridad
+app.use(helmet());
 
 //Middleware
 app.use(bodyParser.json());
