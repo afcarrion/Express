@@ -11,7 +11,9 @@
     "dev:debug": "set DEBUG=express:*, app:*& npm run dev",
     "degug": "set DEBUG=express:*, app:*& npm run start",
     "test": "mocha --exit",
-    "test:cover": "nyc npm run test"
+    "test:cover": "nyc npm run test",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -29,10 +31,11 @@
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
-    "pug": "^3.0.0"
+    "pug": "^3.0.1",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "chalk": "^4.1.0",
@@ -52,5 +55,6 @@
       "lib",
       "utils"
     ]
-  }
+  },
+  "snyk": true
 }
