@@ -31,7 +31,7 @@
     "mongodb": "^3.5.9",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
-    "passport-jwt": "^4.0.0",
+    "passport-jwt": "^4.0.1",
     "pug": "^3.0.0"
   },
   "devDependencies": {
